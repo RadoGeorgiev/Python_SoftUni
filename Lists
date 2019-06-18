@@ -1,0 +1,50 @@
+data = list(map(int, input().split()))
+com = list(map(str, input().split()))
+games = 0
+
+while not com[0] == "exhausted":
+    if com[0] =="set":
+        if len(data) == len(set(data)):
+            print("It is a set")
+        else:
+            set_list = list(sorted(set(data), key=data.index))
+            if len(set_list) > 0:
+                print(set_list)
+    elif com[0] == "filter":
+        if com[1] == "odd":
+            odd_list = list(filter(lambda num: num % 2 == 1, data))
+            if len(odd_list) > 0:
+                print(odd_list)
+        elif com[1] == "even":
+            even_list = list(filter(lambda num: num % 2 == 0, data))
+            if len(even_list) > 0:
+                print(even_list)
+    elif com[0] == "slice":
+        n = int(com[1])
+        m = int(com[2])
+        if 0 <= n < (len(data) - 1) and 0 < m < (len(data) - 1):
+            print(data[n:m+1])
+        else:
+            print('IndexError caught')
+        
+    elif com[0] == "divide":
+        if int(com[1])==0:
+            print('ZeroDivisionError caught')
+        else:
+            divided_list = [i / int(com[1]) for i in data]
+            if len(divided_list) > 0:
+                print(divided_list)
+    elif com[0] == "multiply":
+        m_list = [i * int(com[1]) for i in data]
+        if len(m_list) > 0:
+            print(m_list)
+    elif com[0] == "sort":
+        if len(data) > 0:
+            print(sorted(data))
+    elif com[0] == "reverse":
+        if len(data) > 0:
+            print(data[::-1])
+    games += 1
+    com = list(map(str, input().split()))
+
+print(f'I beat It for {games} rounds!')
