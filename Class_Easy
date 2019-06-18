@@ -1,0 +1,52 @@
+class Players:
+    def __init__(self,name, games):
+        self.name = name
+        self.games = games
+
+    def get_score(self):
+        score = sum(self.games)
+        return score
+
+    def get_count(self):
+        count = len(self.games)
+        return count
+
+data = input()
+
+players_list = []
+
+while not data == 'report':
+
+    name = data.split(' -> ')[0]
+    games = data.split(' -> ')[1].split(', ')
+    player = Players(name, list(map(int, games)))
+    players_list.append(player)
+
+    data = input()
+
+data2 = input().split()
+
+while not data2[0] == 'end':
+
+    formatted_list = []
+
+    if data2[0] == 'score':
+        if data2[1] == 'ascending':
+            formatted_list = sorted(players_list, key= lambda pl: (pl.get_score(),pl.name))
+        else:
+            formatted_list = sorted(players_list, key=lambda pl: (-pl.get_score(), pl.name))
+
+
+        for el in formatted_list:
+            print(f'{el.name}: {el.get_score()}')
+
+    elif data2[0] == 'numberOfGames':
+        if data2[1] == 'ascending':
+            formatted_list = sorted(players_list, key=lambda pl: (pl.get_count(), pl.name))
+        else:
+            formatted_list = sorted(players_list, key=lambda pl: (-pl.get_count(), pl.name))
+        for el in formatted_list:
+            print(f'{el.name}: {el.get_count()}')
+
+
+    data2 = input().split()
