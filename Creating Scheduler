@@ -1,0 +1,15 @@
+import sched, time
+
+myscheduler = sched.scheduler(time.time,time.sleep) # setting object from class sched
+
+def fun1():
+    print("Task starter")
+def schedular():
+    print(time.time())
+    myscheduler.enter(5, 1, fun1, ()) # instancing obj as task 1
+    myscheduler.enter(10, 1, fun1, ()) # task 2 
+    myscheduler.enter(12, 1, print, "End of the schedule")
+    myscheduler.run()  #starting the schedule
+    
+    
+schedular()
