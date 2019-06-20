@@ -4,7 +4,7 @@ myscheduler = sched.scheduler(time.time,time.sleep) # setting object from class 
 
 def fun1():
     print("Task starter")
-def schedular():
+def scheduler():
     print(time.time())
     myscheduler.enter(5, 1, fun1, ()) # instancing obj as task 1
     myscheduler.enter(10, 1, fun1, ()) # task 2 
@@ -12,4 +12,4 @@ def schedular():
     myscheduler.run()  #starting the schedule
     
     
-schedular()
+scheduler()
